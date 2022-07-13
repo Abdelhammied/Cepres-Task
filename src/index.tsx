@@ -14,6 +14,10 @@ import { Provider } from "react-redux";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "theme/theme.config";
 
+// ** Toastify
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -23,6 +27,8 @@ root.render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <App />
+
+        <ToastContainer />
       </ThemeProvider>
     </Provider>
   </React.StrictMode>

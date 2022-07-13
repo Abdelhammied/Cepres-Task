@@ -1,7 +1,5 @@
+import React, { useCallback } from "react";
 import {
-  Avatar,
-  Badge,
-  Chip,
   Table,
   TableBody,
   TableCell,
@@ -9,15 +7,20 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
+
 import { ContactInterface } from "store/contacts/conacts.state";
 import { contactsStateSelector } from "store/contacts/contacts.selectors";
+import ContactListItem from "./ContactListItem";
 
 export default function ContactList() {
   const contacts = useSelector(
     contactsStateSelector("contacts")
   ) as ContactInterface[];
+
+  const currentSelectedContact = useSelector(
+    contactsStateSelector("contact")
+  ) as ContactInterface;
 
   const getTotalUnreadedMessages = useCallback(() => {
     return contacts.reduce(
@@ -37,21 +40,11 @@ export default function ContactList() {
       <Table>
         <TableBody>
           {contacts.map((contact) => (
-            <TableRow key={contact.id}>
-              <TableCell>
-                <Avatar />
-              </TableCell>
-
-              <TableCell>
-                <Typography variant="h6">{`${contact.fname} ${contact.lname}`}</Typography>
-
-                <Typography>{contact.email_of_contact}</Typography>
-              </TableCell>
-
-              <TableCell>
-                <Chip label={`${contact.unreaded_messages} New Messages`} />
-              </TableCell>
-            </TableRow>
+            <ContactListItem
+              key={contact.id}
+              contact={contact}
+              isActive={currentSelectedContact.id === contact.id}
+            />
           ))}
         </TableBody>
 

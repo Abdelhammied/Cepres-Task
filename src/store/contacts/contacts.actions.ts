@@ -1,4 +1,4 @@
-import { AppDispatch } from "store/store.config";
+import { AppDispatch, RootState } from "store/store.config";
 import contacts from "assets/data/contacts.json";
 import {
   ContactInterface,
@@ -6,6 +6,8 @@ import {
   ContactsStateType,
 } from "./conacts.state";
 import { UPDATE_CONTACTS_STATE } from "./contacts.types";
+
+import { toast } from "react-toastify";
 
 export const updateContactsState =
   (key: ContactsStateType, value: ContactInterface | ContactInterface[]) =>
@@ -19,10 +21,32 @@ export const updateContactsState =
     });
   };
 
-export const initializeContacts = () => (dispatch: AppDispatch) => {
-  dispatch(updateContactsState("contacts", contacts));
+export const deleteContact =
+  (contactId: string) => (dispatch: AppDispatch, store: () => RootState) => {
+    const contacts = store().contacts.contacts;
+    const contact = store().contacts.contact;
 
-  dispatch(updateContactsState("contact", contacts[0]));
+    let contactsCopy = contacts.slice();
+
+    contactsCopy = contactsCopy.filter((contact) => contact.id !== contactId);
+
+    dispatch(updateContactsState("contacts", contactsCopy));
+
+    toast("Deleted Successfully.", {
+      type: "success",
+    });
+
+    if (contact.id === contactId) {
+      dispatch(updateContactsState("contact", contactsCopy[0]));
+    }
+  };
+
+export const initializeContacts = () => (dispatch: AppDispatch) => {
+  let contactsDataType = contacts as ContactInterface[];
+
+  dispatch(updateContactsState("contacts", contactsDataType));
+
+  dispatch(updateContactsState("contact", contactsDataType[0]));
 };
 
 export const resetContact = () => (dispatch: AppDispatch) => {
