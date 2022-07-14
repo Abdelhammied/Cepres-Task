@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import { ContactInterface } from "store/contacts/conacts.state";
 import {
   deleteContact,
+  handleEditContact,
   updateContactsState,
 } from "store/contacts/contacts.actions";
 import { AppDispatch } from "store/store.config";
@@ -31,13 +32,7 @@ function ContactListItem({ contact }: ContactListItemInterface) {
 
   const showItem = () => dispatch(updateContactsState("contact", contact));
 
-  const editItem = () => {
-    dispatch(updateContactsState("state", "update"));
-
-    dispatch(updateContactsState("contact", contact));
-
-    dispatch(updateContactsState("openModal", true));
-  };
+  const editItem = () => dispatch(handleEditContact(contact));
 
   const deleteItem = () => {
     if (
@@ -65,7 +60,7 @@ function ContactListItem({ contact }: ContactListItemInterface) {
         <Chip label={`${contact.unreaded_messages} New Messages`} />
       </TableCell>
 
-      <TableCell>
+      <TableCell align="right">
         <IconButton size="small" color="info" onClick={showItem}>
           <VisibilityIcon />
         </IconButton>

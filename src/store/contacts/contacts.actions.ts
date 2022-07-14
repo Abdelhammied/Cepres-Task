@@ -43,6 +43,15 @@ export const handleCreateContact = () => (dispatch: AppDispatch) => {
   dispatch(updateContactsState("contact", contact));
 };
 
+export const handleEditContact =
+  (contact: ContactInterface) => (dispatch: AppDispatch) => {
+    dispatch(updateContactsState("state", "update"));
+
+    dispatch(updateContactsState("contact", contact));
+
+    dispatch(updateContactsState("openModal", true));
+  };
+
 export const createOrUpdateContact =
   (contact: ContactInterface) =>
   (dispatch: AppDispatch, store: () => RootState) => {
