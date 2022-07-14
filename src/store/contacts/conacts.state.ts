@@ -12,10 +12,18 @@ export interface ContactsInitialStateInterface {
   contacts: ContactInterface[];
 
   contact: ContactInterface;
+
+  openModal: boolean;
+
+  state: "create" | "update";
+
+  erorrs: { [key: string]: string | null };
 }
 
 export type ContactFields = keyof ContactInterface;
 export type ContactsStateType = keyof ContactsInitialStateInterface;
+export type ContactsStateValuesType =
+  ContactsInitialStateInterface[keyof ContactsInitialStateInterface];
 
 export const contactsInitialState: ContactsInitialStateInterface = {
   contact: {
@@ -29,4 +37,15 @@ export const contactsInitialState: ContactsInitialStateInterface = {
   },
 
   contacts: [],
+
+  openModal: false,
+
+  state: "create",
+
+  erorrs: {
+    fname: null,
+    lname: null,
+    company_name: null,
+    email_of_contact: null,
+  },
 };

@@ -1,5 +1,7 @@
 import React, { useCallback } from "react";
 import {
+  Box,
+  Button,
   Table,
   TableBody,
   TableCell,
@@ -7,20 +9,22 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { ContactInterface } from "store/contacts/conacts.state";
 import { contactsStateSelector } from "store/contacts/contacts.selectors";
+import AddIcon from "@mui/icons-material/Add";
+
 import ContactListItem from "./ContactListItem";
+import { AppDispatch } from "store/store.config";
+import { handleCreateContact } from "store/contacts/contacts.actions";
 
 export default function ContactList() {
   const contacts = useSelector(
     contactsStateSelector("contacts")
   ) as ContactInterface[];
 
-  const currentSelectedContact = useSelector(
-    contactsStateSelector("contact")
-  ) as ContactInterface;
+  const dispatch: AppDispatch = useDispatch();
 
   const getTotalUnreadedMessages = useCallback(() => {
     return contacts.reduce(
@@ -35,16 +39,22 @@ export default function ContactList() {
 
   return (
     <>
-      <Typography variant="h5">My Investment Network</Typography>
+      <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Typography variant="h5">My Investment Network</Typography>
+
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={() => dispatch(handleCreateContact())}
+        >
+          Create
+        </Button>
+      </Box>
 
       <Table>
         <TableBody>
           {contacts.map((contact) => (
-            <ContactListItem
-              key={contact.id}
-              contact={contact}
-              isActive={currentSelectedContact.id === contact.id}
-            />
+            <ContactListItem key={contact.id} contact={contact} />
           ))}
         </TableBody>
 
