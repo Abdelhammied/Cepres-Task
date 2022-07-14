@@ -45,6 +45,8 @@ export const handleCreateContact = () => (dispatch: AppDispatch) => {
 
 export const handleEditContact =
   (contact: ContactInterface) => (dispatch: AppDispatch) => {
+    dispatch(updateContactsState("erorrs", {}));
+
     dispatch(updateContactsState("state", "update"));
 
     dispatch(updateContactsState("contact", contact));
