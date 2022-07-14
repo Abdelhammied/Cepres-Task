@@ -9,6 +9,27 @@ export default function ContactHeader() {
     contactsStateSelector("contact")
   ) as ContactInterface;
 
+  const MemoizedHeaderDescription = React.useMemo(
+    () => (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          flexDirection: "column",
+          flex: 1,
+          gap: (theme) => theme.spacing(10),
+        }}
+      >
+        <Typography variant="h4">Manage your investment network</Typography>
+
+        <Typography>
+          Big company announcement or simple sub-header taking two or more lines
+        </Typography>
+      </Box>
+    ),
+    []
+  );
+
   return (
     <Box
       sx={{
@@ -28,22 +49,7 @@ export default function ContactHeader() {
           gap: (theme) => theme.spacing(25),
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            flexDirection: "column",
-            flex: 1,
-            gap: (theme) => theme.spacing(10),
-          }}
-        >
-          <Typography variant="h4">Manage your investment network</Typography>
-
-          <Typography>
-            Big company announcement or simple sub-header taking two or more
-            lines
-          </Typography>
-        </Box>
+        {MemoizedHeaderDescription}
 
         <Box
           gap={(theme) => theme.spacing(2)}
@@ -51,6 +57,7 @@ export default function ContactHeader() {
           marginBottom={(theme) => theme.spacing(5)}
         >
           <Button variant="contained">Verify Request</Button>
+
           <Button>Contact {contact.fname}</Button>
         </Box>
       </Box>
