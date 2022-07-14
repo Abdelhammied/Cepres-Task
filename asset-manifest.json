@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Cepres-Task/static/css/main.762de53d.css",
-    "main.js": "/Cepres-Task/static/js/main.03a6cfe7.js",
+    "main.css": "/Cepres-Task/static/css/main.27f68128.css",
+    "main.js": "/Cepres-Task/static/js/main.2a61d9b1.js",
     "static/js/787.c1112931.chunk.js": "/Cepres-Task/static/js/787.c1112931.chunk.js",
     "index.html": "/Cepres-Task/index.html",
-    "main.762de53d.css.map": "/Cepres-Task/static/css/main.762de53d.css.map",
-    "main.03a6cfe7.js.map": "/Cepres-Task/static/js/main.03a6cfe7.js.map",
+    "main.27f68128.css.map": "/Cepres-Task/static/css/main.27f68128.css.map",
+    "main.2a61d9b1.js.map": "/Cepres-Task/static/js/main.2a61d9b1.js.map",
     "787.c1112931.chunk.js.map": "/Cepres-Task/static/js/787.c1112931.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.762de53d.css",
-    "static/js/main.03a6cfe7.js"
+    "static/css/main.27f68128.css",
+    "static/js/main.2a61d9b1.js"
   ]
 }
