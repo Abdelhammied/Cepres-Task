@@ -39,10 +39,7 @@ interface ContactListItemInterface {
   isActive: boolean;
 }
 
-export default function ContactListItem({
-  contact,
-  isActive,
-}: ContactListItemInterface) {
+function ContactListItem({ contact, isActive }: ContactListItemInterface) {
   const { show } = useContextMenu({
     id: contact.id,
   });
@@ -103,3 +100,5 @@ export default function ContactListItem({
     </>
   );
 }
+
+export default React.memo(ContactListItem);
